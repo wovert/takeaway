@@ -4,6 +4,7 @@ import Site from '@/pages/Site/Site'
 import Search from '@/pages/Search/Search'
 import Order from '@/pages/Order/Order'
 import Profile from '@/pages/Profile/Profile'
+import Login from '@/pages/Login/Login'
 
 // 生命使用插件
 Vue.use(Router)
@@ -33,6 +34,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })
