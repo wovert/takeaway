@@ -17,10 +17,8 @@
         </div>
         <span class="arrow">
           <i class="iconfont icon-jiantou1"></i>
-        </span>      
+        </span>
       </router-link>
-
-
     </section>
     <section class="profile_info_data border-1px">
       <ul class="info_data_list">

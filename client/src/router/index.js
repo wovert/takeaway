@@ -13,27 +13,42 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: Site
+      component: Site,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/site',
       name: 'site',
-      component: Site
+      component: Site,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/search',
       name: 'search',
-      component: Search
+      component: Search,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/order',
       name: 'order',
-      component: Order
+      component: Order,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/profile',
       name: 'profile',
-      component: Profile
+      component: Profile,
+      meta: {
+        showFooter: true
+      }
     },
     {
       path: '/login',

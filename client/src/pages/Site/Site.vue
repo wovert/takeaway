@@ -140,9 +140,9 @@ export default {
     ShopList
   },
   mounted () {
-    // create swiper instance
+    // eslint-disable-next-line
     new Swiper('.swiper-container', {
-      loop:  true, // 循环轮播图
+      loop: true, // 循环轮播图
       pagination: {
         el: '.swiper-pagination'
       }
