@@ -604,5 +604,8 @@ export default new Router({
 2. 通过动态 class 和 $route.path 来实现 tab 样式切换
 3. 通过阿里图标库，显示导航图标
 
-#### FooterGuide 编码
+### swiper 轮播图
+
+`npm i swiper --save`
+
 

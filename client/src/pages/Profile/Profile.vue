@@ -1,10 +1,6 @@
 <template>
   <section class="profile">
-    <header class="header">
-      <a class="header_title">
-        <span class="header_title_text">我的</span>
-      </a>
-    </header>
+    <HeaderTop title="我的"></HeaderTop>
     <section class="profile-number">
       <a href="javascript:" class="profile-link">
         <div class="profile_image">
@@ -96,7 +92,11 @@
 </template>
 
 <script>
+import HeaderTop from '@/components/HeaderTop/HeaderTop'
 export default {
+  components: {
+    HeaderTop
+  }
 }
 </script>
 
@@ -142,7 +142,7 @@ export default {
         top 50%
         transform translateY(-50%)
         .header_login_text
-          color #fff   
+          color #fff
     .profile-number
       margin-top 45.5px
       .profile-link
@@ -270,5 +270,5 @@ export default {
             height 10px
             .icon-jiantou1
               color #bbb
-              font-size 10px    
+              font-size 10px
 </style>

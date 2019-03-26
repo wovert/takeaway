@@ -1,10 +1,6 @@
 <template>
   <section class="search">
-    <header class="header">
-      <a class="header_title">
-        <span class="header_title_text">搜索</span>
-      </a>
-    </header>
+    <HeaderTop title="搜索"></HeaderTop>
     <form class="search_form" action="#">
       <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input">
       <input type="submit" name="submit" class="search_submit">
@@ -13,7 +9,11 @@
 </template>
 
 <script>
+import HeaderTop from '@/components/HeaderTop/HeaderTop'
 export default {
+  components: {
+    HeaderTop
+  }
 }
 </script>
 
@@ -59,7 +59,7 @@ export default {
         top 50%
         transform translateY(-50%)
         .header_login_text
-          color #fff   
+          color #fff
     .search_form
       clearFix()
       margin-top 45px
