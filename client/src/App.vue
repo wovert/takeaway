@@ -1,19 +1,34 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <!-- $route当前路由-->
+    <!-- $route当剝路由-->
     <FooterGuide v-show="$route.meta.showFooter"></FooterGuide>
   </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import FooterGuide from '@/components/FooterGuide/FooterGuide'
-console.log(FooterGuide)
+// import {categoriesApi} from '@/api'
 export default {
   components: {
     FooterGuide
   },
-  name: 'App'
+  name: 'App',
+  async mounted () {
+    // const result = await categoriesApi()
+    // console.log(result)
+
+    // 1. 方法1
+    // this.$store.dispatch('getAddress')
+
+    // 2. 方法2
+    this.getAddress()
+  },
+  methods: {
+    // 2. 方法2
+    ...mapActions(['getAddress', 'getCategories'])
+  }
 }
 </script>
 

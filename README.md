@@ -2,6 +2,46 @@
 
 ## 项目介绍
 
+- 1. 项目开发准备
+  - 项目描述
+  - 技术选型
+  - API 接口
+- 2. 开启项目开发
+  - 脚手架创建项目
+  - 安装所有依赖/指定依赖
+  - 开发环境运行
+  - 生产环境打包与发布
+- 3. 搭建项目整体界面结构
+  - stylus
+    - 结构化，变量，函数/mixin(混合)
+  - vue-router
+    - `router-view/router-link/keep-alive`
+    - `$router`: 路由器对象，包含一些操作路由的功能函数，来实现编程式导航（跳转路由）
+    - `$route`：当前路由对象，一些当前路由信息数据的容器，`path/meta/query/params`
+  - 项目路由拆分
+  - 底部导航组件：`FooterGuide`
+  - 导航路由组件：`Site/Search/Order/Profile`
+- 4. 抽取组件
+  - 头部组件：`HeaderTop` 通过`slot`来实现组件通信标签结构
+  - 商家列表组件：`ShopList`
+- 5. 登录路由组件
+  - 静态组件
+  - `FooterGuide` 的现实/隐藏；通过路由的`meta`
+
+- 6. 后台仙姑
+  - 启动后台项目，理解前后台分离
+  - 测试后台接口：使用postman
+  - 修正接口文档
+
+- 7. 前后台交互
+  - ajax 请求库：axios
+  - ajax 请求函数封装：axios+promise
+  - 接口请求函数封装：每个后台接口
+
+- 8. 异步数据
+
+- 9. 登录/注册
+
 ### 项目描述
 
 1. 外卖 Web App(SPA)
@@ -624,3 +664,45 @@ export default new Router({
 ```sh
 # npm i --save axios
 ```
+
+### 配置代理实现跨域 ajax 请求
+
+```sh
+# vim config/index.js
+  // 蒙蔽浏览器可以进行跨域
+  proxyTable: {
+    '/api': { // 匹配所有已 '/api' 开头的请求路径
+      target: 'http://localhost:4000', // 代理目标的基础路径
+      // secure: true, // https接口，需要配置这个参数
+      changeOrigin: true, // 支持跨域
+      pathRewrite: { // 重写路径：去掉路径中开头的'/api'
+        '^/api': ''
+      }
+    }
+  }
+
+# vim src/api/http.js
+  import {get} from './http'
+  const BASE_URL = 'api'
+  export const address = (geohash) => get(`${BASE_URL}/position/${geohash}`)
+```
+
+### vuex管理状态
+
+```sh
+下载 vuex
+# npm i --save vuex
+
+定义 state
+# vim src/store/state.js
+  export default {
+    longitude: 116.36867, // 经度
+    latitude: 40.10038, // 维度
+    address: {}, // 地址信息
+    categories: [], // 分类信息
+    shops: [] // 商家信息
+  }
+```
+
+
+

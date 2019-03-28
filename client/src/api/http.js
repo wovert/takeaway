@@ -9,7 +9,7 @@ import axios from 'axios'
 
 function getUrl (data, url) {
   let dataStr = ''
-  Object.keys(data).forEach( key => {
+  Object.keys(data).forEach(key => {
     dataStr += key + '=' + data[key] + '&'
   })
   if (dataStr !== '') {
@@ -44,7 +44,6 @@ function get (url = '', data = {}) {
       reject(err)
     })
   })
-
 }
 
 function post (url = '', data = {}) {
