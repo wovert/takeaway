@@ -11,7 +11,7 @@
     </HeaderTop>
     <!--首页导航-->
     <nav class="msite_nav">
-      <div class="swiper-container">
+      <div class="swiper-container" v-if="categoriesArr.length">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(categories, index) in categoriesArr" :key="index">
             <a href="javascript:" class="link_to_food" v-for="(category, i) in categories" :key="i">
@@ -25,6 +25,7 @@
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
       </div>
+      <img src="./images/msite_back.svg" alt="" v-else>
     </nav>
     <!--首页附近商家-->
     <div class="msite_shop_list">
@@ -54,8 +55,9 @@ export default {
     }
   },
   mounted () {
-    // 获取分类信息
+    // 获取接口数据信息
     this.$store.dispatch('getCategories')
+    this.$store.dispatch('getShops')
   },
   watch: {
     // 监视 categories 有数组了, 在异步更新数组之前执行
