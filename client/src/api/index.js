@@ -2,7 +2,7 @@
  * 接口多个接口请求函数的模块
  * 函数的返回值： Promise Object
  */
-import {get} from './http'
+import {get, post} from './http'
 
 // 测试
 // const BASE_URL = 'http://localhsot:4000'
@@ -15,15 +15,25 @@ export const addressApi = (geohash) => get(`${BASE_URL}/position/${geohash}`)
 export const categoriesApi = () => get(`${BASE_URL}/index_category`)
 
 // [3、根据经纬度获取商铺列表](#3根据经纬度获取商铺列表)
-export const shopsApi = ({longitude, latitude}) => get(`${BASE_URL}/shops`, {longitude, latitude})
+export const shopsApi = ({geohash, keyword}) => get(`${BASE_URL}/shops`, {geohash, keyword})
 
 // [4、根据经纬度和关键字搜索商铺列表](#4根据经纬度和关键字搜索商铺列表)
-// [5、获取一次性验证码](#5获取一次性验证码)
+export const searchShopsApi = () => get(`${BASE_URL}/search_shops`)
+
 // [6、用户名密码登陆](#6用户名密码登陆)
+export const pwdLoginApi = ({name, pwd, captcha}) => post(`${BASE_URL}/login_pwd`, {name, pwd, captcha})
+
 // [7、发送短信验证码](#7发送短信验证码)
+export const sendCodeApi = ({phone}) => get(`${BASE_URL}/sendcode`, {phone})
+
 // [8、手机号验证码登陆](#8手机号验证码登陆)
+export const smsLoginApi = ({phone, code}) => post(`${BASE_URL}/login_sms`, {phone, code})
+
 // [9、根据会话获取用户信息](#9根据会话获取用户信息)
+export const userInfoApi = () => get(`${BASE_URL}/userinfo`)
+
 // [10、用户登出](#10用户登出)
+export const logoutApi = () => get(`${BASE_URL}/logout`)
 
 // // 注册接口
 // export const userRegister = (user) => post('/register', user)

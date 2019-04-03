@@ -704,7 +704,52 @@ export default new Router({
   }
 ```
 
+#### 异步数据
+
+- 封装 ajax
+  - promise+axios 封装 ajax 请求的函数
+  - 封装每个接口对应的请求函数（能根据接口定义ajax 请求函数）
+  - 解决ajax 的跨域问题：配置代理
+- vuex编码
+  - store/index|state|mutations|actions|getters|mutations-types
+  - 设计state: 后台获取的数据
+  - 实现 actions
+    - 定义异步action: async/await
+    - 流程：发 ajax 获取数据，commit 给 mutation
+  - 实现 mutations: 给状态赋值
+  - 实现 index: 创建 store 对象
+  - main.js 配置 store
+- 组件异步显示数据
+  - 在 mounted() 通过 $store.dispatch('actionName') 来异步获取后台数据到state中
+  - mapState(['xx'])读取 state中数据到组件中
+  - 在模板中显示 xx 的数据
+- 模板中显示数据的来源
+  - data: 自身的数据（内部改变）
+  - props: 外部传入的数据（外部改变）
+  - computed: 根据data/props/别的comput/state/getters
+- 异步显示轮播图
+  - 通过 vuex 获取 foodCategories 数组（发请求，读取）
+  - 对数据进行整合计算（一维变为特定的二维数组）
+  - 使用 Swiper 显示轮播，如何在界面更新之后创建 Swiper 对象？
+    - 使用回调 + $nextTick()
+    - 使用 watch + $nextTick()
+
 ### 登錄注冊功能
 
+- [容联-云通讯](https://www.yuntongxun.com/)
 
+- `npm i --save mint-ui`
 
+#### 按需打包
+
+```sh
+# npm i --save-dev babel-plugin-component
+# vim .babelrc
+  "plugins": ["transform-runtime", ["component", [
+    {
+      "libraryName": "mint-ui",
+      "style": true
+    }
+  ]]]
+
+```

@@ -2,12 +2,17 @@
 <!--首页外卖-->
   <section class="site">
     <HeaderTop :title="address.name">
-      <span class="header_search" slot="search">
+      <router-link class="header_search" slot="search" to="/search">
         <i class="iconfont icon-sousuo"></i>
-      </span>
-      <span class="header_login" slot="login">
-        <span class="header_login_text">登录|注册</span>
-      </span>
+      </router-link>
+      <router-link class="header_login" slot="login" :to="userInfo._id ? '/userinfo' : '/login'">
+        <span class="header_login_text" v-if="!userInfo._id">
+          登录|注册
+        </span>
+        <span class="header_login_text" v-else>
+          <i class="iconfont icon-person"></i>
+        </span>
+      </router-link>
     </HeaderTop>
     <!--首页导航-->
     <nav class="msite_nav">
@@ -77,7 +82,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['address', 'categories']),
+    ...mapState(['address', 'categories', 'userInfo']),
+
     // 根据categories 1维数组生成一个2维数组
     categoriesArr () {
       const {categories} = this

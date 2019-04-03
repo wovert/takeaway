@@ -24,10 +24,11 @@ export default {
 
     // 2. 方法2
     this.getAddress()
+    this.getUserInfo()
   },
   methods: {
     // 2. 方法2
-    ...mapActions(['getAddress', 'getCategories'])
+    ...mapActions(['getAddress', 'getUserInfo'])
   }
 }
 </script>
