@@ -753,3 +753,105 @@ export default new Router({
   ]]]
 
 ```
+
+## 模拟接口数据
+
+### Mock.js
+
+> 生成随机数据，拦截 Ajax 请求
+
+### 1. 提供数据
+
+```sh
+# vim mock/data.json
+{
+  "info": {},
+  "goods": [],
+  "ratings": []
+}
+```
+
+### 下载安装 mock.js
+
+```sh
+# npm i --save mockjs
+# vim mock/mockServer.js
+  // 使用 mockjs 提供 mock 数据接口
+  import Mock from 'mockjs'
+  import data from './data.json'
+
+  // 商品列表接口
+  Mock.mock('/goods', {code: 0, data: data.goods})
+
+  // 评论接口
+  Mock.mock('/ratings', {code: 0, data: data.ratings})
+
+  // 商家信息接口
+  Mock.mock('/info', {code: 0, data: data.info})
+
+# vim main.js
+  import './mock/mockServer' // 加载mockServer
+
+# vim api/index.js
+  // 商家信息
+  export const shopInfoApi = () => get(`${BASE_URL}/info`)
+
+  // 评论列表信息
+  export const shopRatingsApi = () => get(`${BASE_URL}/ratings`)
+
+  // 商品列表
+  export const shopGoodsApi = () => get(`${BASE_URL}/goods`)
+
+# vim store/state.js
+  goods: [], // 商品列表
+  ratings: [], // 商家评论列表
+  info: {} // 商家信息
+
+# vim store/mutation-types.js
+  export const RECEIVE_GOODS = 'receive_goods' // 接受商品数组
+  export const RECEIVE_RATINGS = 'receive_ratings' // 接受商家评论数组
+  export const RECEIVE_INFO = 'receive_info' // 接受商家信息
+
+# vim store/mutations.js
+  [RECEIVE_GOODS] (state, {goods}) {
+    state.goods = goods
+  },
+  [RECEIVE_INFO] (state, {info}) {
+    state.info = info
+  },
+  [RECEIVE_RATINGS] (state, {ratings}) {
+    state.ratings = ratings
+  }
+
+# vim store/actions.js
+  // 异步获取商家信息
+  async getShopInfo ({commit}) {
+    const result = await shopInfoApi()
+
+    // 提交一个 mutation
+    if (result.code === 0) {
+      const info = result.data
+      commit(RECEIVE_INFO, {info})
+    }
+  },
+  // 异步获取商家评论
+  async getShopRatings ({commit}) {
+    const result = await shopRatingsApi()
+
+    // 提交一个 mutation
+    if (result.code === 0) {
+      const ratings = result.data
+      commit(RECEIVE_RATINGS, {ratings})
+    }
+  },
+  // 异步获取商品列表
+  async getShopGoods ({commit}) {
+    const result = await shopGoodsApi()
+
+    // 提交一个 mutation
+    if (result.code === 0) {
+      const goods = result.data
+      commit(RECEIVE_GOODS, {goods})
+    }
+  }
+```

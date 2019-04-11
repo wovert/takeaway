@@ -201,4 +201,26 @@ router.get('/search_shops', function (req, res) {
   })
 })
 
+
+router.get('/info', function (req, res, next) {
+  // setTimeout(function () {
+    const data = require('../data/shop.json')
+    res.send({code: 0, data: data.info})
+  // }, 300)
+});
+
+router.get('/goods', function (req, res, next) {
+  // setTimeout(function () {
+    const data = require('../data/shop.json')
+    res.send({code: 0, data: data.goods})
+  // }, 300)
+});
+
+router.get('/ratings', function (req, res, next) {
+  // setTimeout(function () {
+    const data = require('../data/shop.json')
+    res.send({code: 0, data: data.ratings})
+  // }, 300)
+});
+
 module.exports = router;

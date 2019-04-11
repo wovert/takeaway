@@ -7,6 +7,9 @@ import {
   RECEIVE_CATEGORIES,
   RECEIVE_SHOPS,
   RECEIVE_USER_INFO,
+  RECEIVE_GOODS,
+  RECEIVE_RATINGS,
+  RECEIVE_INFO,
   RESET_USER_INFO
 } from './mutation-types'
 import {
@@ -14,7 +17,10 @@ import {
   categoriesApi,
   shopsApi,
   userInfoApi,
-  logoutApi
+  logoutApi,
+  shopGoodsApi,
+  shopInfoApi,
+  shopRatingsApi
 } from '@/api'
 
 export default {
@@ -45,12 +51,43 @@ export default {
   async getShops ({commit, state}) {
     const {longitude, latitude} = state
     // 发送异步ajax请求
-    const result = await shopsApi(longitude, latitude)
+    console.log(longitude, latitude)
+    const result = await shopsApi({longitude, latitude})
 
     // 提交一个 mutation
     if (result.code === 0) {
       const shops = result.data
       commit(RECEIVE_SHOPS, {shops})
+    }
+  },
+  // 异步获取商家信息
+  async getShopInfo ({commit}) {
+    const result = await shopInfoApi()
+
+    // 提交一个 mutation
+    if (result.code === 0) {
+      const info = result.data
+      commit(RECEIVE_INFO, {info})
+    }
+  },
+  // 异步获取商家评论
+  async getShopRatings ({commit}) {
+    const result = await shopRatingsApi()
+
+    // 提交一个 mutation
+    if (result.code === 0) {
+      const ratings = result.data
+      commit(RECEIVE_RATINGS, {ratings})
+    }
+  },
+  // 异步获取商品列表
+  async getShopGoods ({commit}) {
+    const result = await shopGoodsApi()
+
+    // 提交一个 mutation
+    if (result.code === 0) {
+      const goods = result.data
+      commit(RECEIVE_GOODS, {goods})
     }
   },
   // 同步记录用户信息

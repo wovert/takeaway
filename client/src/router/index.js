@@ -6,7 +6,11 @@ import Order from '@/pages/Order/Order'
 import Profile from '@/pages/Profile/Profile'
 import Login from '@/pages/Login/Login'
 
-// 生命使用插件
+import Shop from '@/pages/Shop/Shop'
+import ShopGoods from '@/pages/Shop/ShopGoods/ShopGoods'
+import ShopInfo from '@/pages/Shop/ShopInfo/ShopInfo'
+import ShopRatings from '@/pages/Shop/ShopRatings/ShopRatings'
+
 Vue.use(Router)
 
 export default new Router({
@@ -54,6 +58,32 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/shop',
+      name: 'shop',
+      component: Shop,
+      children: [
+        {
+          path: '/shop/goods',
+          component: ShopGoods,
+          name: 'shopGoods'
+        },
+        {
+          path: '/shop/ratings',
+          component: ShopRatings,
+          name: 'shopRatings'
+        },
+        {
+          path: '/shop/info',
+          component: ShopInfo,
+          name: 'shopInfo'
+        },
+        {
+          path: '',
+          redirect: '/shop/goods'
+        }
+      ]
     }
   ]
 })

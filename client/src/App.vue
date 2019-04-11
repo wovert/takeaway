@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <!-- $route当剝路由-->
     <FooterGuide v-show="$route.meta.showFooter"></FooterGuide>
   </div>
 </template>

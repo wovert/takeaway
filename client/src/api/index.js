@@ -15,7 +15,7 @@ export const addressApi = (geohash) => get(`${BASE_URL}/position/${geohash}`)
 export const categoriesApi = () => get(`${BASE_URL}/index_category`)
 
 // [3、根据经纬度获取商铺列表](#3根据经纬度获取商铺列表)
-export const shopsApi = ({geohash, keyword}) => get(`${BASE_URL}/shops`, {geohash, keyword})
+export const shopsApi = ({longitude, latitude}) => get(`${BASE_URL}/shops`, {longitude, latitude})
 
 // [4、根据经纬度和关键字搜索商铺列表](#4根据经纬度和关键字搜索商铺列表)
 export const searchShopsApi = () => get(`${BASE_URL}/search_shops`)
@@ -34,6 +34,15 @@ export const userInfoApi = () => get(`${BASE_URL}/userinfo`)
 
 // [10、用户登出](#10用户登出)
 export const logoutApi = () => get(`${BASE_URL}/logout`)
+
+// 商家信息
+export const shopInfoApi = () => get(`${BASE_URL}/info`)
+
+// 评论列表信息
+export const shopRatingsApi = () => get(`${BASE_URL}/ratings`)
+
+// 商品列表
+export const shopGoodsApi = () => get(`${BASE_URL}/goods`)
 
 // // 注册接口
 // export const userRegister = (user) => post('/register', user)
